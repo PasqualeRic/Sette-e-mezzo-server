@@ -19,4 +19,4 @@ io.on('connection', handler(io))
 
 
 
-server.listen(process.env.PORT || port, () => console.log('Server listening on http://'+ip.address()+':'+port))
+server.listen(process.env.PORT || port, () => console.log('Server listening -- on http://'+ip.address()+':'+port))
