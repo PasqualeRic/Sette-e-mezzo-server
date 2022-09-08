@@ -16,11 +16,12 @@ app.use(cors());
 const server = http.createServer(app)
 const io = socketio(server)
 
-io.on('connection', ioHandler(io))
-
 const ioHandler = (io) => (socket) => {
     console.log(socket.id);
     ioGames(socket)
  }
+ 
+io.on('connection', ioHandler(io))
+
 
 server.listen(process.env.PORT || port, () => console.log('Server listening -- on http://'+ip.address()+':'+port))
