@@ -22,9 +22,10 @@ const ioGames = (socket) => {
         console.log('joinGame player: ')
         console.log(data)
         try {
+            console.log("sei dentro il try")
             //console.log(GamesArray);
             GamesArray.forEach(element =>{
-                if(element.numberOfPlayers == data.numberOfPlayers){
+                if(element.numberOfPlayers == data.numberOfPlayers && element.status == 'joinable'){
                     if(element.players.length == 0)
                     {
                         element.players.push({id: socket.id, name: data.name});
@@ -32,11 +33,6 @@ const ioGames = (socket) => {
                         socket.to(element.id).emit("invioPlayer",data.name, data.numberOfPlayers,data.id)
                         console.log(socket.id+' joined in '+element.id)
                         console.log(element.players[0].id)
-                        //console.log(data.id)
-                        if(element.players.length == element.numberOfPlayers-1){
-                            element.status = "close"
-                            socket.to(element.id).emit("start", element.numberOfPlayers)
-                        }
                     }
                     else {
                         console.log(element.players.find(e => e.id == data.id))
@@ -49,7 +45,6 @@ const ioGames = (socket) => {
                             //console.log(data.id)
                             if(element.players.length == element.numberOfPlayers-1){
                                 element.status = "close"
-                                socket.to(element.id).emit("start", element.numberOfPlayers)
                             }
                         }
 
