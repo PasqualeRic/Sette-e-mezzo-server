@@ -16,8 +16,8 @@ const server = http.createServer(app)
 const io = socketio(server)
 
 io.on('connection',() =>{
-        console.log(socket.id);
-        ioGames(socket)
+        console.log(io.id);
+        ioGames(io)
 })
 
 
