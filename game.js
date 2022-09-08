@@ -4,16 +4,16 @@ class Game {
     id;
     name;
     status;
-    numberOfPlayers;
+    nPlayers;
     players;
     admin;
-    constructor(admin,name = '', status = 'waiting', players = [], numberOfPlayers = 0) {
+    constructor(admin,name = '', status = 'waiting', players = [], nPlayers = 0) {
         this.admin = admin;
         this.id = uuid();
         this.name = name;
         this.status = status;
         this.players = players;
-        this.numberOfPlayers = numberOfPlayers;
+        this.nPlayers = nPlayers;
     }
 }
 

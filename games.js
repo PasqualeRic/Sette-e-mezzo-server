@@ -26,14 +26,14 @@ const ioGames = (socket) => {
             //console.log(GamesArray);
             GamesArray.forEach(element =>{
                 console.log("a")
-                if(element.numberOfPlayers == data.numberOfPlayers && element.status == 'joinable'){
+                if(element.nPlayers == data.nplayers && element.status == 'joinable'){
                     console.log("b")
                     if(element.players.length == 0)
                     {
                         console.log("c")
                         element.players.push({id: socket.id, name: data.name});
                         console.log(element)
-                        socket.to(element.id).emit("invioPlayer",data.name, data.numberOfPlayers,data.id)
+                        socket.to(element.id).emit("invioPlayer",data.name, data.nplayers,data.id)
                         console.log(socket.id+' joined in '+element.id)
                         console.log(element.players[0].id)
                     }
@@ -44,11 +44,11 @@ const ioGames = (socket) => {
                             console.log("e")
                             element.players.push({id: socket.id, name: data.name});
                             console.log(element)
-                            socket.to(element.id).emit("invioPlayer",data.name, data.numberOfPlayers,data.id)
+                            socket.to(element.id).emit("invioPlayer",data.name, data.nplayers,data.id)
                             console.log(socket.id+' joined in '+element.id)
                             console.log(element.players[0].id)
                             //console.log(data.id)
-                            if(element.players.length == element.numberOfPlayers-1){
+                            if(element.players.length == element.nPlayers-1){
                                 element.status = "close"
                             }
                         }
@@ -108,7 +108,7 @@ const ioGames = (socket) => {
         });
         game.name = data.name
         game.status = 'joinable'
-        game.numberOfPlayers = data.numberOfPlayers
+        game.nPlayers = data.nplayers
         console.log(game)
         socket.join(game)
         
@@ -181,9 +181,9 @@ const ioGames = (socket) => {
                 if(element.players[i].id == data){
                     console.log(element)
                     element.players.pop(element.players[i].id);
-                    n = parseInt(element.numberOfPlayers)
+                    n = parseInt(element.nPlayers)
                     n = n - 1
-                    element.numberOfPlayers = n
+                    element.nPlayers = n
                     console.log(element)
                     console.log("id player eliminato: "+data);
                 }
