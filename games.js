@@ -88,7 +88,7 @@ const ioGames = (socket) => {
                 }else{
                     flag=true;
                 }
-            },3000);
+            },500);
         }catch(err)
         {
             callback(err)
@@ -141,7 +141,6 @@ const ioGames = (socket) => {
     const isYourTurn = async (data,callback) => {
         console.log("isYourTurn");
         console.log(data);
-        socket.to(data).emit("myTurn");
 
         try{
             var flag = false;
@@ -154,7 +153,7 @@ const ioGames = (socket) => {
                 }else{
                     flag=true;
                 }
-            },3000);
+            },500);
         }catch(err)
         {
             callback(err)
@@ -192,6 +191,22 @@ const ioGames = (socket) => {
         })
 
     }
+
+    const deleteGame = async (data, callback) => {
+
+        console.log(" ***** delelte Game ***** ");
+        var game;
+        console.log(data);
+        console.log(GamesArray);
+        GamesArray.forEach(element =>{
+
+            if(element.admin==data){
+                console.log("dentro la if")
+                GamesArray.pop(element);
+            }
+        })
+        console.log(GamesArray);
+    }
     
 
     socket.on('confGame',confGame);
@@ -207,5 +222,6 @@ const ioGames = (socket) => {
     socket.on('overSize',overSize);
     socket.on('continueGame',continueGame);
     socket.on('deletePlayer',deletePlayer);
+    socket.on('deleteGame',deleteGame);
 }
 module.exports = ioGames
