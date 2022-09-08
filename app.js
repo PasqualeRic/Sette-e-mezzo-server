@@ -5,7 +5,7 @@ const ip = require("ip");
 const handler = require('./handler');
 
 
-const port = 80 || 3000;
+const port = 3000;
 const bodyParser = require('body-parser')
 const cors = require('cors');
 const app = express()
