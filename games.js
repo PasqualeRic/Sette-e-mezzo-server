@@ -1,7 +1,19 @@
 const { v4: uuid } = require('uuid');
-const gamesManager = require('./gamesmanager');
 const Game = require('./game')
 var conta = 0;
+
+let GamesArray = []
+const gamesManager = {
+
+    getGames: () => {
+        return GamesArray
+    },
+
+    setGames: (games) => {
+        GamesArray = games;
+    }
+}
+
 const ioGames = (socket) => {
     GamesArray = gamesManager.getGames()
     const createGame = async (callback) => {
@@ -10,12 +22,10 @@ const ioGames = (socket) => {
             const game = new Game(socket.id);
             console.log(game)
             GamesArray.push(game)
-            console.log('Game created.')
+            console.log('partita creata')
             socket.join(game.id)
-            callback(game.id)
         } catch (err) {
             console.log(err)
-            callback(new Error())
         }
     }
     const joinGame = async (data, callback) =>  {
@@ -200,7 +210,7 @@ const ioGames = (socket) => {
         console.log(GamesArray);
         GamesArray.forEach(element =>{
 
-            if(element.admin==data){
+            if(element.dealer==data){
                 console.log("dentro la if")
                 GamesArray.pop(element);
             }

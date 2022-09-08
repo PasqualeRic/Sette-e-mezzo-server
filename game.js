@@ -6,9 +6,9 @@ class Game {
     status;
     nPlayers;
     players;
-    admin;
-    constructor(admin,name = '', status = 'waiting', players = [], nPlayers = 0) {
-        this.admin = admin;
+    dealer;
+    constructor(dealer,name = '', status = 'created', players = [], nPlayers = 0) {
+        this.dealer = dealer;
         this.id = uuid();
         this.name = name;
         this.status = status;

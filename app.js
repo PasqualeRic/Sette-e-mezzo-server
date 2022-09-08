@@ -2,7 +2,7 @@ const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
 const ip = require("ip");
-const handler = require('./handler');
+const ioGames = require('./games')
 
 
 const port = 3000;
@@ -15,7 +15,10 @@ app.use(cors());
 const server = http.createServer(app)
 const io = socketio(server)
 
-io.on('connection', handler(io))
+io.on('connection',() =>{
+        console.log(socket.id);
+        ioGames(socket)
+})
 
 
 
