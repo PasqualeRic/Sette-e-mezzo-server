@@ -15,9 +15,6 @@ const gamesManager = {
        
     },
 
-    
-    
-
     getGames: () => {
         return GamesArray
     },

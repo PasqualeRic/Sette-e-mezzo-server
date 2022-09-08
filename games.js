@@ -103,7 +103,7 @@ const ioGames = (socket) => {
             // controllo se esiste già una partita con questo nome
             if(element.name == data.name)
             {
-                throw new Error()
+                //throw new Error()
             }
         });
         game.name = data.name
