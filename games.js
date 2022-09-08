@@ -24,6 +24,7 @@ const ioGames = (socket) => {
             GamesArray.push(game)
             console.log('partita creata')
             socket.join(game.id)
+            callback(game.id)
         } catch (err) {
             console.log(err)
         }
