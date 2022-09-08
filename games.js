@@ -25,9 +25,12 @@ const ioGames = (socket) => {
             console.log("sei dentro il try")
             //console.log(GamesArray);
             GamesArray.forEach(element =>{
+                console.log("a")
                 if(element.numberOfPlayers == data.numberOfPlayers && element.status == 'joinable'){
+                    console.log("b")
                     if(element.players.length == 0)
                     {
+                        console.log("c")
                         element.players.push({id: socket.id, name: data.name});
                         console.log(element)
                         socket.to(element.id).emit("invioPlayer",data.name, data.numberOfPlayers,data.id)
@@ -35,8 +38,10 @@ const ioGames = (socket) => {
                         console.log(element.players[0].id)
                     }
                     else {
+                        console.log("d")
                         console.log(element.players.find(e => e.id == data.id))
                         if(!element.players.find(e => e.id == data.id) && element.status == "joinable"){
+                            console.log("e")
                             element.players.push({id: socket.id, name: data.name});
                             console.log(element)
                             socket.to(element.id).emit("invioPlayer",data.name, data.numberOfPlayers,data.id)
