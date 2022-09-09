@@ -110,13 +110,6 @@ const ioGames = (socket) => {
         console.log('conf game')
         console.log(data);
         const game = GamesArray.find(el => el.id == data.id);
-        GamesArray.forEach(element => {
-            // controllo se esiste già una partita con questo nome
-            if(element.name == data.name)
-            {
-                //throw new Error()
-            }
-        });
         game.name = data.name
         game.status = 'joinable'
         game.nPlayers = data.nplayers
@@ -206,17 +199,19 @@ const ioGames = (socket) => {
     const deleteGame = async (data, callback) => {
 
         console.log(" ***** delelte Game ***** ");
-        var game;
         console.log(data);
         console.log(GamesArray);
-        GamesArray.forEach(element =>{
-
-            if(element.dealer==data){
-                console.log("dentro la if")
-                GamesArray.pop(element);
-            }
-        })
-        console.log(GamesArray);
+        const game = GamesArray.find(el => el.id == data);
+        game.pop(game)
+        console.log(GamesArray)
+    }
+    const saveWinner = async (data) => {
+        console.log("saveWinner")
+        console.log(data)
+        const game = GamesArray.find(el => el.id == data.idGame);
+        console.log(game)
+        game.winners.push({name: data.winner})
+        console.log(game)
     }
     
 
@@ -234,5 +229,6 @@ const ioGames = (socket) => {
     socket.on('continueGame',continueGame);
     socket.on('deletePlayer',deletePlayer);
     socket.on('deleteGame',deleteGame);
+    socket.on('saveWinner',saveWinner);
 }
 module.exports = ioGames
