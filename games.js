@@ -202,7 +202,7 @@ const ioGames = (socket) => {
         console.log(data);
         console.log(GamesArray);
         const game = GamesArray.find(el => el.id == data);
-        game.pop(game)
+        GamesArray.pop(game)
         console.log(GamesArray)
     }
     const saveWinner = async (data) => {
