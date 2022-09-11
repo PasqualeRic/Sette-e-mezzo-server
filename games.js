@@ -47,7 +47,7 @@ const ioGames = (socket) => {
                         socket.to(element.id).emit("invioPlayer",data.name, data.nplayers,data.id)
                         console.log(socket.id+' joined in '+element.id)
                         console.log(element.players[0].id)
-                        callback();
+                        throw new Exception("OK"); 
                     }
                     else {
                         console.log("d")
@@ -64,7 +64,7 @@ const ioGames = (socket) => {
                                 element.status = "close"
                             }
                         }
-                        callback();
+                        throw new Exception("OK"); 
                     }
                 }
             })
