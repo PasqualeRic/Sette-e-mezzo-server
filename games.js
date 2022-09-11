@@ -47,8 +47,7 @@ const ioGames = (socket) => {
                         socket.to(element.id).emit("invioPlayer",data.name, data.nplayers,data.id)
                         console.log(socket.id+' joined in '+element.id)
                         console.log(element.players[0].id)
-                        console.log("return")
-                        return;
+                        return 0; 
                     }
                     else {
                         console.log("d")
@@ -66,7 +65,7 @@ const ioGames = (socket) => {
                             }
                         }
                         console.log("return")
-                        return;
+                        return 0;
                     }
                 }
             })
