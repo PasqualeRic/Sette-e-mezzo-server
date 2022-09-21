@@ -47,6 +47,10 @@ const ioGames = (socket) => {
                         socket.to(element.id).emit("invioPlayer",data.name, data.nplayers,data.id)
                         console.log(socket.id+' joined in '+element.id)
                         console.log(element.players[0].id)
+                        if(element.players.length == element.nPlayers-1){
+                            element.status = "close"
+                            console.log(" -> STATUS : CLOSE");
+                        }
                         throw new Error(); 
                     }
                     else {
