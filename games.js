@@ -60,6 +60,7 @@ const ioGames = (socket) => {
                             console.log(socket.id+' joined in '+element.id)
                             console.log(element.players[0].id)
                             //console.log(data.id)
+                            console.log("element.players.length ("+element.players.length+") == element.nPlayers-1"+(element.nPlayers-1));
                             if(element.players.length == element.nPlayers-1){
                                 element.status = "close"
                                 console.log(" -> STATUS : CLOSE");
